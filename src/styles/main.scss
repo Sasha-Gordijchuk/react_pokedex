@@ -12,6 +12,8 @@ code {
 }
 
 @import './utils/normalize';
+@import './utils/mixins';
+
 @import './app';
 @import './pokemon-list';
 @import './pokemon-item';

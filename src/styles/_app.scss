@@ -1,11 +1,15 @@
 .app {
-  max-width: 1024px;
   padding: 16px;
+  margin: 0 auto;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
+
+  @include onDesktop {
+    max-width: 1440px;
+  }
 
   &__header {
     width: 50%;
@@ -22,20 +26,42 @@
   &__main {
     display: flex;
     flex-direction: row;
-    // align-items: center;
+    flex-flow: row-reverse;
 
     gap: 16px;
+
+    @include onTablet {
+      flex-flow: row;
+
+      gap: 64px;
+    }
+
+    @include onDesktop {
+      flex-flow: row;
+    }
   }
 
-  
   &__card-wrapper {
-    flex-grow: 1;
-    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include onDesktop {
+      width: 302px;
+    }
   }
 
   &__pokemon-card {
     position: sticky;
 
     top: 128px;
+
+    @include onTablet {
+      position: static;
+    }
+
+    @include onDesktop {
+      position: static;
+    }
   }
 }

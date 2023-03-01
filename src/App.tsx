@@ -60,7 +60,7 @@ export const App: React.FC = () => {
                 pokemon={selectedPokemon}
               />
             ) : (
-              <span>Select a Pokemon to see details</span>
+              <span className="app__plug">Select a Pokemon to see details</span>
             )}
         </div>
 

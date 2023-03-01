@@ -1,8 +1,17 @@
 .pokemon-list {
   padding: 4px;
+  max-width: 348px;
 
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 8px;
+
+  @include onTablet {
+    max-width: 718px;
+  }
+
+  @include onDesktop {
+    max-width: 718px;
+  }
 }
