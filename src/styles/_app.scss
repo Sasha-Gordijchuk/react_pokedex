@@ -1,6 +1,6 @@
 .app {
   max-width: 1024px;
-  padding: 8px;
+  padding: 16px;
 
   display: flex;
   flex-direction: column;
@@ -21,9 +21,21 @@
 
   &__main {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    // align-items: center;
 
     gap: 16px;
+  }
+
+  
+  &__card-wrapper {
+    flex-grow: 1;
+    flex-shrink: 0;
+  }
+
+  &__pokemon-card {
+    position: sticky;
+
+    top: 128px;
   }
 }

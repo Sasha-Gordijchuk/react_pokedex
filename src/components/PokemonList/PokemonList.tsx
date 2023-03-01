@@ -5,10 +5,12 @@ import { PokemonItem } from '../PokemonItem';
 
 interface Props {
   pokemons: Pokemon[];
+  handlePokemonSelect: (selectedPokemon: Pokemon) => void;
 }
 
 export const PokemonList: React.FC<Props> = ({
   pokemons,
+  handlePokemonSelect,
 }) => {
   return (
     <div className="pokemon-list">
@@ -16,6 +18,7 @@ export const PokemonList: React.FC<Props> = ({
         <PokemonItem
           key={pokemon.id}
           pokemon={pokemon}
+          handlePokemonSelect={handlePokemonSelect}
         />
       ))}
     </div>
