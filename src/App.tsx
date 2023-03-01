@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import { getByUrl, getGroupByUrls } from './api/poke';
+import { PokemonList } from './components/PokemonList';
 import { Pokemon } from './types/Pokemon';
-import { Resource } from './types/Resource';
 import { ResourceList } from './types/ResourceList';
 
 export const App: React.FC = () => {
@@ -34,11 +33,23 @@ export const App: React.FC = () => {
     fetchDetailedPokemons();
   }, [pokemonsFromServer]);
 
+  const test = async () => {
+    const res = await getByUrl('https://pokeapi.co/api/v2/type');
+
+    console.log(res);
+  };
+
   return (
     <div className="app">
       <header className="app__header">
-        Pokedex
+        <h1>Pokedex</h1>
       </header>
+      <main className="app__main">
+        <PokemonList
+          pokemons={detailedPokemons}
+        />
+      </main>
+      <button type="button" onClick={() => test()}>test</button>
     </div>
   );
 };

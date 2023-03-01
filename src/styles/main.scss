@@ -11,6 +11,8 @@ code {
     monospace;
 }
 
-@import './app';
 @import './utils/normalize';
+@import './app';
+@import './pokemon-list';
+@import './pokemon';
 
