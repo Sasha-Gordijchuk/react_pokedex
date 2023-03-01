@@ -20,7 +20,7 @@ export const PokemonItem: React.FC<Props> = ({
       <img className="pokemon__image" src={sprites.front_default} alt={name} />
       <div className="pokemon__details">
         <span className="pokemon__name">{name}</span>
-        <div className="pokenon__types">
+        <div className="pokemon__types">
           {types.map(type => (
             <span
               key={type.type.name}

@@ -1,37 +1,40 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-console */
-import React, { useEffect, useState } from 'react';
-import { getByUrl, getGroupByUrls } from './api/poke';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Pagination } from '@mui/material';
+import { getByUrl, getPagesCount, getPokemonsByPage } from './api/poke';
 import { PokemonList } from './components/PokemonList';
 import { Pokemon } from './types/Pokemon';
-import { ResourceList } from './types/ResourceList';
 
 export const App: React.FC = () => {
-  const [pokemonsFromServer, setPokemonsFromServer] = useState<ResourceList>();
-  const [detailedPokemons, setDetailedPokemons] = useState<Pokemon[]>([]);
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [pagesCount, setPagesCount] = useState<number>(0);
 
-  const fetchDetailedPokemons = async () => {
-    if (pokemonsFromServer) {
-      const urls = pokemonsFromServer.results.map(pokemon => pokemon.url);
+  const fetchPokemons = async () => {
+    const result = await getPokemonsByPage(currentPage);
 
-      const result = await getGroupByUrls(urls);
-
-      setDetailedPokemons(result);
-    }
+    setPokemons(result);
   };
 
-  const fetchSimplePokemons = async () => {
-    const res = await getByUrl();
+  const fetchPagesCount = async () => {
+    const result = await getPagesCount();
 
-    setPokemonsFromServer(res);
+    setPagesCount(result);
   };
 
-  useEffect(() => {
-    fetchSimplePokemons();
+  const handlePageChange = useCallback((pageNumber: number) => {
+    setCurrentPage(pageNumber);
   }, []);
 
   useEffect(() => {
-    fetchDetailedPokemons();
-  }, [pokemonsFromServer]);
+    fetchPagesCount();
+    fetchPokemons();
+  }, []);
+
+  useEffect(() => {
+    fetchPokemons();
+  }, [currentPage]);
 
   const test = async () => {
     const res = await getByUrl('https://pokeapi.co/api/v2/type');
@@ -46,7 +49,13 @@ export const App: React.FC = () => {
       </header>
       <main className="app__main">
         <PokemonList
-          pokemons={detailedPokemons}
+          pokemons={pokemons}
+        />
+
+        <Pagination
+          variant="outlined"
+          count={pagesCount}
+          onChange={(event, page) => handlePageChange(page)}
         />
       </main>
       <button type="button" onClick={() => test()}>test</button>
