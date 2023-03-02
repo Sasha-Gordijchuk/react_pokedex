@@ -60,7 +60,7 @@
   &__pokemon-card {
     position: sticky;
 
-    top: 128px;
+    top: 64px;
 
     @include onTablet {
       position: static;
@@ -68,6 +68,28 @@
 
     @include onDesktop {
       position: static;
+    }
+  }
+
+  &__footer {
+    position: fixed;
+    bottom: 0;
+    padding: 16px 0;
+
+    background-color: white;
+
+    border-top: 1px solid gray;
+
+    @include onTablet {
+      position: static;
+      padding: 0;
+      border: none;
+    }
+
+    @include onDesktop {
+      position: static;
+      padding: 0;
+      border: none;
     }
   }
 }

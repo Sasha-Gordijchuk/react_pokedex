@@ -105,7 +105,7 @@ export const App: React.FC = () => {
           )}
       </main>
 
-      <footer>
+      <footer className="app__footer">
         <Pagination
           variant="outlined"
           count={pagesCount}

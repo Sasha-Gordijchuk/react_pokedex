@@ -108,7 +108,6 @@ export const Filter: React.FC<Props> = ({
             </option>
           ))}
         </select>
-
       </div>
 
       <button
