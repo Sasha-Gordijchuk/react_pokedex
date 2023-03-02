@@ -1,6 +1,6 @@
-# Pokedox
+# Pokedex
 
-  - [DEMO](https://sasha-gordijchuk.github.io/react_pokedox)
+  - [DEMO](https://sasha-gordijchuk.github.io/react_pokedex)
 
 ## Description
 

@@ -1,6 +1,6 @@
 {
-  "name": "react_pokedox",
-  "homepage": "https://sasha-gordijchuk.github.io/react_pokedox",
+  "name": "react_pokedex",
+  "homepage": "https://sasha-gordijchuk.github.io/react_pokedex",
   "type": "module",
   "version": "0.1.0",
   "private": true,
