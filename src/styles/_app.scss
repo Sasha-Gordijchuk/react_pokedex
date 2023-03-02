@@ -42,12 +42,17 @@
   }
 
   &__card-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include onTablet {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
     @include onDesktop {
       width: 302px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 

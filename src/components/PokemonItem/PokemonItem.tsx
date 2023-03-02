@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable no-console */
 import React from 'react';
 import { Pokemon } from '../../types/Pokemon';
 
@@ -22,11 +20,15 @@ export const PokemonItem: React.FC<Props> = ({
     <div
       className="pokemon card"
       onClick={() => handlePokemonSelect(pokemon)}
-      onKeyDown={() => {}}
+      onKeyDown={() => { }}
       role="button"
       tabIndex={0}
     >
-      <img className="pokemon-item__image" src={sprites.front_default} alt={name} />
+      <img
+        className="pokemon-item__image"
+        src={sprites.front_default}
+        alt={name}
+      />
       <div className="pokemon-item__details">
         <span className="pokemon-item__name">{name}</span>
         <div className="pokemon-item__types">

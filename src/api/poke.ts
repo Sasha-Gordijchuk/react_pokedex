@@ -1,30 +1,41 @@
-/* eslint-disable no-console */
 import axios from 'axios';
 import { Resource } from '../types/Resource';
 
-export const getByUrl = async (
-  url: string | null = 'https://pokeapi.co/api/v2/pokemon/?limit=12',
-) => {
-  if (url) {
-    const result = await axios.get(url);
+const BASE_URL = 'https://pokeapi.co/api/v2';
 
-    return result.data;
-  }
+export const getPagesCount = async () => {
+  const result = await axios.get(`${BASE_URL}/pokemon`);
 
-  return null;
+  return Math.ceil(result.data.count / 12);
 };
 
-export const getPokemonsByPage = async (page: number) => {
-  const offset = (page * 12) - 12;
-  const general = await axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=12&offset=${offset}`);
-  const urls = general.data.results.map((el: Resource) => el.url);
-  const result = await Promise.all(urls.map((url: string) => axios.get(url)));
+export const getFilterTypes = async () => {
+  const result = await axios.get(`${BASE_URL}/type?limit=999`);
+
+  return result.data.results.map((el: Resource) => el.name);
+};
+
+export const getDetailedPokemons = async (resources: Resource[]) => {
+  const result = await Promise.all(resources
+    .map((el: Resource) => axios.get(el.url)));
 
   return result.map(obj => obj.data);
 };
 
-export const getPagesCount = async () => {
-  const result = await axios.get('https://pokeapi.co/api/v2/pokemon');
+export const getPokemonsByPage = async (page: number) => {
+  const offset = (page * 12) - 12;
+  const general = await axios.get(`${BASE_URL}/pokemon/?limit=12&offset=${offset}`);
 
-  return Math.ceil(result.data.count / 12);
+  const urls = general.data.results;
+  const result = await getDetailedPokemons(urls);
+
+  return result;
+};
+
+export const getFiltredPokemons = async (type: string) => {
+  const general = await axios.get(`${BASE_URL}/type/${type}`);
+  const result = general.data.pokemon
+    .map((poke: { pokemon: Resource, slot: number }) => poke.pokemon);
+
+  return result;
 };

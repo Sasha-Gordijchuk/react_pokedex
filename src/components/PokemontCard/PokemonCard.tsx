@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react';
 import { Pokemon } from '../../types/Pokemon';
 
@@ -33,7 +32,12 @@ export const PokemonCard: React.FC<Props> = ({
             <th>Type</th>
             <th>
               {types.map(type => (
-                <span className="pokemon-card__type">{type.type.name}</span>
+                <span
+                  key={type.type.name}
+                  className="pokemon-card__type"
+                >
+                  {type.type.name}
+                </span>
               ))}
             </th>
           </tr>
