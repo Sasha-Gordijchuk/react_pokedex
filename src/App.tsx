@@ -50,6 +50,7 @@ export const App: React.FC = () => {
       setCurrentPage(page);
       setPokemons(detailedPokemons);
     } else {
+      fetchPagesCount();
       setCurrentPage(1);
       fetchPokemons();
     }
@@ -59,7 +60,6 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     fetchPagesCount();
-    fetchPokemons();
   }, []);
 
   useEffect(() => {
