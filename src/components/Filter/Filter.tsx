@@ -25,6 +25,7 @@ export const Filter: React.FC<Props> = ({
   const [filterType, setFilterType] = useState<string>('');
   const [filtredPokemons, setFiltredPokemons] = useState<Resource[]>([]);
   const [pagesCount, setPagesCount] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const fetchFilterTypes = async () => {
     const result = await getFilterTypes();
@@ -63,6 +64,8 @@ export const Filter: React.FC<Props> = ({
       return;
     }
 
+    setIsLoading(true);
+
     const generalPokemons = await fetchFiltredPokemons();
     const pages = getPagesCount(generalPokemons);
     const detailedPokemons = await fetchDetailedPokemons(1, generalPokemons);
@@ -70,6 +73,7 @@ export const Filter: React.FC<Props> = ({
     setFiltredPokemons(generalPokemons);
     setPagesCount(pages);
     showFiltredPokemons(true, pages, 1, detailedPokemons);
+    setIsLoading(false);
   };
 
   const changePage = async () => {
@@ -109,7 +113,9 @@ export const Filter: React.FC<Props> = ({
 
       <button
         type="button"
-        className="button"
+        className={isLoading
+          ? 'button is-loading'
+          : 'button'}
         onClick={() => handleChangeFilter()}
       >
         Filter

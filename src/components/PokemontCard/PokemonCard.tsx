@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import { Pokemon } from '../../types/Pokemon';
 
@@ -22,7 +23,8 @@ export const PokemonCard: React.FC<Props> = ({
     <div className="app__pokemon-card pokemon-card card">
       <img
         className="pokemon-card__image"
-        src={sprites.front_default}
+        src={sprites.front_default
+          || 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg'}
         alt={name}
       />
       <h2 className="pokemon-card__name">{name}</h2>
